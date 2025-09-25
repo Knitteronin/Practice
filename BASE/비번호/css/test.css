@@ -1,0 +1,307 @@
+@charset "utf-8";
+
+/* 1. 전역 초기화 및 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;          /* 리스트 기본 스타일 제거 */
+    text-decoration: none;     /* 링크 밑줄 제거 */
+    font-family: "맑은 고딕";   /* 기본 폰트 설정 */
+    font-size: 14px;          /* 기본 폰트 크기 */
+    color: #333;              /* 기본 텍스트 색상 */
+    box-sizing: border-box;   /* 박스모델을 border-box로 설정 */
+    /* 
+    컬러 팔레트:
+    main color #FCA148 (오렌지)
+    sub color #49D2FC (파랑)
+    text color #333 (어두운 회색)
+    */
+}
+
+/* 2. 유틸리티 클래스 */
+.cf:after {                   /* float 해제를 위한 clearfix */
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.hidden {                     /* 화면에서 숨김 처리 */
+    display: none;
+}
+
+/* 3. 기본 레이아웃 구조 (와이어프레임) */
+.wrapper {
+    width: 1200px;            /* 전체 컨테이너 너비 */
+    margin: 0 auto;           /* 중앙 정렬 */
+}
+
+header {
+    height: 100px;            /* 헤더 높이 */
+}
+
+.slides {
+    height: 300px;            /* 슬라이드 영역 높이 */
+    background: #bbb;         /* 임시 배경색 */
+}
+
+main {
+    height: 200px;            /* 메인 콘텐츠 높이 */
+    background: #fff;
+    padding: 10px 0;
+}
+
+footer {
+    height: 100px;            /* 푸터 높이 */
+    background: #ddd;         /* 임시 배경색 */
+}
+
+/* 4. 헤더 영역 스타일링 */
+header .logo {
+    width: 200px;             /* 로고 영역 너비 */
+    float: left;              /* 왼쪽 정렬 */
+    padding-top: 30px;        /* 상단 여백 */
+}
+
+/* 5. 네비게이션 메뉴 */
+header nav {
+    float: right;             /* 오른쪽 정렬 */
+    width: 720px;             /* 네비게이션 너비 */
+    margin-top: 30px;
+    margin-right: 10px;
+    position: relative;
+    z-index: 1;               /* 드롭다운 메뉴를 위한 z-index */
+}
+
+nav>ul>li {                   /* 메인 메뉴 아이템 */
+    line-height: 40px;
+    float: left;
+    width: 180px;
+    text-align: center;
+    position: relative;       /* 서브메뉴 위치 기준점 */
+}
+
+nav>ul>li a {                 /* 메인 메뉴 링크 */
+    color: #fff;
+    display: block;
+    background: #333;
+}
+
+nav ul ul li a {              /* 서브메뉴 링크 */
+    background: #fff;
+    display: block;
+    color: #333;
+}
+
+nav>ul>li a:hover {           /* 메인 메뉴 호버 효과 */
+    background: #FCA148;
+}
+nav ul ul a:hover{            /* 서브메뉴 호버 효과 */
+    background: #49D2FC;
+}
+
+nav ul ul {                   /* 서브메뉴 컨테이너 */
+    position: absolute;       /* 절대 위치 */
+    left: 0;
+    width: 100%;
+    display: none;            /* 기본적으로 숨김 */
+}
+
+/* 6. 메인 콘텐츠 섹션 */
+main section {
+    width: 400px;             /* 각 섹션 너비 (1200px를 3등분) */
+    float: left;
+    height: 100%;
+}
+
+/* 7. 슬라이드 영역 */
+.slides {
+    overflow: hidden;         /* 넘치는 부분 숨김 */
+    height: 300px;
+}
+
+slides>ul {
+    height: 900px;            /* 슬라이드 전체 높이 (300px × 3개) */
+}
+
+.slide {
+    width: 1200px;            /* 슬라이드 너비 */
+    height: 300px;
+    position: relative;       /* 제목 위치 기준점 */
+}
+
+.slide h2 {                   /* 슬라이드 제목 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: rgba(0, 0, 0, .8);  /* 반투명 검정 배경 */
+    padding: 10px 25px;
+    color: #fff;
+    transform: translate(-50%, -50%);  /* 정중앙 정렬 */
+}
+
+/* 8. 탭 메뉴 시스템 */
+.tabmenu {
+    position: relative;
+    z-index: 1;               /* 탭이 콘텐츠 위로 오도록 */
+    top: 1px;                 /* 테두리와 겹치도록 */
+}
+
+.tabmenu li {
+    float: left;
+}
+
+.tabmenu li a {               /* 탭 버튼 */
+    display: block;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-bottom: none;      /* 하단 테두리 제거 */
+    background: #ccc;
+}
+
+.tabmenu li.active a {        /* 활성 탭 */
+    background: #fff;
+}
+
+.tabcontent {                 /* 탭 콘텐츠 영역 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    position: relative;
+    height: 150px;
+}
+
+.tabcontent>div {             /* 각 탭 패널 */
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: none;            /* 기본적으로 숨김 */
+}
+
+.tabcontent>div.active {      /* 활성 탭 패널만 표시 */
+    display: block;
+}
+
+/* 9. 공지사항 탭 */
+#notice {
+    padding: 0 10px;
+}
+
+#notice li {
+    line-height: 30px;
+}
+
+#notice li span {             /* 날짜 부분 */
+    float: right;
+}
+
+#notice li:nth-child(even) {  /* 짝수 번째 항목 배경색 */
+    background: #ccc;
+}
+
+#notice li a:hover {          /* 공지사항 링크 호버 */
+    font-weight: bold;
+}
+
+/* 10. 갤러리 탭 */
+#gallery {
+    padding: 20px;
+}
+
+#gallery ul li {
+    float: left;
+    margin-right: 40px;       /* 이미지 간 간격 */
+}
+
+#gallery ul li:last-child {   /* 마지막 이미지는 여백 없음 */
+    margin-right: 0;
+}
+
+/* 11. 배너 및 바로가기 링크 */
+.banner, .quick_links{
+    position: relative;       /* 텍스트 오버레이를 위한 기준점 */
+    padding: 0 10px; 
+    overflow: hidden;         /* 넘치는 부분 숨김 */
+}
+.quick_links{
+    padding: 0;
+}
+.banner h2,
+.quick_links h2{              /* 오버레이 텍스트 */
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform:translate(-50%,-50%);  /* 정중앙 배치 */
+    background: rgba(0,0,0,0.6);     /* 반투명 배경 */
+    color: #fff;
+    padding: 10px 20px;    
+}
+.banner img,
+.quick_links img{
+    width: 100%;              /* 이미지 전체 너비 */
+}
+.banner a:hover,
+.quick_links a:hover{         /* 호버 시 투명도 효과 */
+    opacity: 0.5;
+}
+
+/* 12. 푸터 영역 */
+footer{
+    background: #ebebeb;
+}
+footer div {
+    float: left;
+    height: 100%;
+}
+footer .logo {                /* 푸터 로고 */
+    width: 200px;
+    padding: 30px 0 0 20px;
+}
+footer .copyright {           /* 저작권 정보 */
+    width: 800px;
+    text-align: center;
+    line-height: 100px;       /* 세로 중앙 정렬 */
+}
+footer .sns {                 /* SNS 링크 */
+    width: 200px;
+    float: left;
+    padding-top: 24px;
+} 
+footer .sns li{
+    float:left;    
+}
+footer .sns li + li{          /* 첫 번째 제외하고 왼쪽 여백 */
+    margin-left: 10px;
+}
+
+/* 13. 팝업 모달 */
+#popup{
+    position: fixed;          /* 화면 전체 덮는 고정 위치 */
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;            /* 기본적으로 숨김 */
+    z-index:10;               /* 최상위 레이어 */
+}
+#popup .popup_content{        /* 팝업 콘텐츠 박스 */
+    width: 400px;
+    padding: 20px 20px 100px;
+    background: #fff;
+    border-radius:5px;        /* 둥근 모서리 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%, -50%);  /* 화면 중앙 배치 */
+    box-shadow:0 0 3px rgba(0,0,0,.5);  /* 그림자 효과 */
+}
+#popup .popup_content .close{ /* 닫기 버튼 */
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: #333;
+    color: #fff;
+    cursor: pointer;          /* 클릭 가능한 커서 */
+    padding: 5px 8px;
+}
+#popup.active{                /* 팝업 활성화 상태 */
+    display: block;
+}
